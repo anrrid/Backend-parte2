@@ -5,13 +5,10 @@ const { Server: IOServer } = require('socket.io')
 const session = require('express-session')
 const MongoStore = require ("connect-mongo");
 const cookieParser = require ("cookie-parser");
-const { fileURLToPath } = require('url');
-const path = require ('path')
 
 const ContainerMsg = require('./src/controllers/contenedorMsg.js')
 const ContainerProds = require('./src/controllers/contenedorProd.js')
 
-const dirnamee = path.dirname(fileURLToPath(require.meta.url));
 const app = express()
 const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
@@ -70,18 +67,19 @@ function auth(req, res, next) {
     }
 }
 
+//inicia en login
 app.get('/', (req, res) => {
     res.redirect('/login')
 });
 
 app.get("/login", (req, res) => {
-    res.sendFile(dirnamee + "/views/login.html");
+    res.sendFile(__dirname + "/views/login.html");
 });
 
 app.get("/home", auth, (req, res) => {
-    res.render(dirnamee + "/views/index.ejs", {
+    res.render(__dirname + "/views/index.ejs", {
         name: req.session.user
-    });
+   });
 });
 
 app.post("/login", (req, res) => {
@@ -90,7 +88,7 @@ app.post("/login", (req, res) => {
 });
 
 app.get("/logout", auth, (req, res) => {
-    res.render(dirnamee + "/views/logout.ejs", {
+    res.render( __dirname + "/views/logout.ejs", {
         name: req.session.user
     });
     req.session.destroy();

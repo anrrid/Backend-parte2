@@ -26,7 +26,14 @@
         <img
             src="https://www.latercera.com/resizer/bqGmSB9zaav9BRXPcQKR-3SGXNk=/900x600/smart/arc-anglerfish-arc2-prod-copesa.s3.amazonaws.com/public/KPEK5OWGKFEQNEVBIWOIPKEXOM.jpg">
         </div>
-        <div> <%- include('./login.ejs')-%></div>
+        <div> <div class="container mt-3">
+            <h1 class="alert alert-success">
+                Bienvenido, <%= name %>
+                    <button class="btn btn-warning float-right mt-2" onclick="location.href='/logout'">
+                        Desloguear
+                    </button>
+            </h1>
+        </div></div>
 
 </div>
     

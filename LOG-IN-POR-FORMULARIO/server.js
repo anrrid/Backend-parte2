@@ -1,32 +1,37 @@
 const express = require('express')
 const { Server: HttpServer } = require('http')
 const { Server: IOServer } = require('socket.io')
+
 const session = require('express-session')
+const MongoStore = require ("connect-mongo");
+const cookieParser = require ("cookie-parser");
+const { fileURLToPath } = require('url');
+const path = require ('path')
 
 const ContainerMsg = require('./src/controllers/contenedorMsg.js')
 const ContainerProds = require('./src/controllers/contenedorProd.js')
 
-
+const dirnamee = path.dirname(fileURLToPath(require.meta.url));
 const app = express()
 const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
+const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
 //SESSION
 app.use(session({
+    store: MongoStore.create({ mongoUrl: 'mongodb+srv://coderhouse:coderhouse@cluster0.ijjaz.mongodb.net/sessions?retryWrites=true&w=majority', mongoOptions: advancedOptions }),
     secret: 'secret',
     resave: true,
-    saveUninitialized: true
+    rolling: true,
+    saveUninitialized: false,
+    cookie: { maxAge: 60000 }
 }))
 
 
 //VIEWS
 app.use(express.static('./src/public'))
+app.use(cookieParser());
 app.set('view engine', 'ejs')
-
-app.get('/', async (req, res) => {
-    res.render('index.ejs', {root: __dirname})
-})
-
 
 
 
@@ -56,6 +61,40 @@ io.on('connection', async (sockets) => {
     })
 })
 
+//SESSION
+function auth(req, res, next) {
+    if (req.session?.user) {
+        next();
+    } else {
+        res.redirect("/login");
+    }
+}
+
+app.get('/', (req, res) => {
+    res.redirect('/login')
+});
+
+app.get("/login", (req, res) => {
+    res.sendFile(dirnamee + "/views/login.html");
+});
+
+app.get("/home", auth, (req, res) => {
+    res.render(dirnamee + "/views/index.ejs", {
+        name: req.session.user
+    });
+});
+
+app.post("/login", (req, res) => {
+    req.session.user = req.body.name;
+    res.redirect('/home');
+});
+
+app.get("/logout", auth, (req, res) => {
+    res.render(dirnamee + "/views/logout.ejs", {
+        name: req.session.user
+    });
+    req.session.destroy();
+});
 
 const PORT = 8080
-httpServer.listen(PORT, () => console.log('Iniciando en el puerto: ' + PORT))
+httpServer.listen(PORT, () => console.log('Server on: ' + PORT))

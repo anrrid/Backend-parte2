@@ -1,4 +1,4 @@
-# Desafio de Chat y Listado de Productos con WebSockets
+# LOG-IN
 
 ## ¡Importante!
 Crear una database en en MySQL llamada "dbecommerce"

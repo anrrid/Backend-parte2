@@ -27,7 +27,10 @@ app.use(session({
 
 //VIEWS
 app.use(express.static('./src/public'))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
 app.set('view engine', 'ejs')
 
 

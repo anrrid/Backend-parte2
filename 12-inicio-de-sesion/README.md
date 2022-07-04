@@ -4,7 +4,7 @@
 Crear una database en en MySQL llamada "dbecommerce"
 ·Instalar las dependencias con npm usando el siguiente comando:
 ```
-npm i ejs express knex mysql nodemon socket.io sqlite3 connect-mongo cookie-parser express-session mongoose 
+npm i ejs express knex moment mysql nodemon socket.io sqlite3
 ```
 ### Ejecutar comandos
 Crear tablas(tanto MySQL, como de Sqlite3):

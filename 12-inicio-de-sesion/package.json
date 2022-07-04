@@ -1,0 +1,26 @@
+{
+  "name": "12-inicio-de-sesion",
+  "version": "1.0.0",
+  "description": "Crear una database en en MySQL llamada \"dbecommerce\"\r ·Instalar las dependencias con npm usando el siguiente comando:\r ```\r npm i ejs express knex moment mysql nodemon socket.io sqlite3\r ```\r ### Ejecutar comandos\r Crear tablas(tanto MySQL, como de Sqlite3):\r ```\r npm start\r ```\r Inicializar el server en el puerto 8080\r ```\r npm run dev\r ```",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-mongo": "^4.6.0",
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "knex": "^2.1.0",
+    "mongoose": "^6.4.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.18",
+    "socket.io": "^4.5.1",
+    "sqlite3": "^5.0.8"
+  }
+}

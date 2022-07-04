@@ -6,8 +6,8 @@ const session = require('express-session')
 const MongoStore = require ("connect-mongo");
 const cookieParser = require ("cookie-parser");
 
-const ContainerMsg = require('./src/controllers/containerMsg.js')
-const ContainerProds = require('./src/controllers/containerProd.js')
+const ContainerMsg = require('./src/controllers/contenedorMsg.js')
+const ContainerProds = require('./src/controllers/contenedorProd.js')
 
 const app = express()
 const httpServer = new HttpServer(app)
@@ -15,13 +15,13 @@ const io = new IOServer(httpServer)
 const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
 //SESSION
-app.use(cookieParser());
 app.use(session({
-    store: MongoStore.create({ mongoUrl: 'mongodb+srv://coderhouse:coderhouse@cluster0.ijjaz.mongodb.net/Cluster0?retryWrites=true&w=majority', mongoOptions: advancedOptions, ttl: 600 }),
+    store: MongoStore.create({ mongoUrl: 'mongodb+srv://coderhouse:coderhouse@cluster0.ijjaz.mongodb.net/sessions?retryWrites=true&w=majority', mongoOptions: advancedOptions }),
     secret: 'secret',
-    resave: false,
+    resave: true,
+    rolling: true,
     saveUninitialized: false,
-    cookie: { maxAge: 60000 * 10 }
+    cookie: { maxAge: 60000 }
 }))
 
 
@@ -29,46 +29,9 @@ app.use(session({
 app.use(express.static('./src/public'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
 app.set('view engine', 'ejs')
-
-//AUTHENTICATED FC
-app.use((req, res, next) => {
-    req.isAuthenticated = () => {
-        if (req.session.email) {
-            return true
-        }
-
-        return false
-    }
-    req.logout = done => {
-        req.session.destroy(done)
-    }
-    next()
-})
-
-//Verify Authentication
-
-app.use((req, res, next) => {
-    req.isAuthenticated = () => {
-        if (req.session.email) {
-            return true
-        }
-        return false
-    }
-    req.logout = done => {
-        req.session.destroy(done)
-    }
-    next()
-})
-
-//ROUTES
-
-app.get('/login', (req, res) => {
-    if (req.isAuthenticated()) {
-        res.redirect('/data')
-    }
-    res.render('login')
-})
 
 
 

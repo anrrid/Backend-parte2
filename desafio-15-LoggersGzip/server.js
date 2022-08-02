@@ -127,3 +127,24 @@ server.on("error", (error) => {
 });
 
 }
+
+/* ----------------------------------- DEBUG ---------------------------------*/
+
+//node --inspect server.js
+//chrome:/inspect
+
+//PASOS
+//LEVANTE DEL SERVIDOR
+//node --prof server.js
+
+//Emule las conexiones con las request 
+//artillery quick --count 50 -n 20 http://localhost:8080/info > artillery_slow.txt
+
+//LUEGO PASE ESTA LINEA DE COMANDO 
+//node --prof-process isolate-000002BADFFB5440-8740-v8.log > artillery_slow.txt 
+
+//NOTAS
+//cambie el nombre x el de mi archivo isolate generado, yaque no me permite modificarlo. Pero me da un error: EBUSY: resource busy or locked, open 'isolate-000002BADFFB5440-8740-v8.log' 
+
+//AUTOCANNON 0x
+// curl -X GET "http://localhost:8080/info"

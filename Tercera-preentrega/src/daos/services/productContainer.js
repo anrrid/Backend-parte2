@@ -40,6 +40,12 @@ export default class {
         console.log("run getProductByCode");
         return await productModel.find({code: code})
     }
+    async getProductByPrice(min, max){
+        return await productModel
+        .find({
+            $and: [{ price: { $gte: min}}, {price: { $lte: max}}]
+        })
+    }
     async getProductByStock(min, max) {
         console.log("run getProductByStock");
         return await productModel.find({

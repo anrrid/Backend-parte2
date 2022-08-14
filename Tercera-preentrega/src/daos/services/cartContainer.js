@@ -18,12 +18,12 @@ export default class {
         return await cartModel.find();
     }
 
-    async getProductFromCart(id) {
+    async getProductCart(id) {
         console.log("run getProductFromCart");
         return await cartModel.findById(id);
     }
 
-    async deleteProductFromCart ({idCart, idProduct}) {
+    async deleteProductCart ({idCart, idProduct}) {
         console.log("run deleteProductFromCart");
         return await cartModel.findOneAndUpdate({_id: idCart}, {$pull: { product: {code: idProduct}}}
         );

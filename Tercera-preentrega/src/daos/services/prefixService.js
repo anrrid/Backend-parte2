@@ -1,8 +1,8 @@
-const axios = require("axios");
+import { get } from "axios";
 
-module.exports = async function prefixService() {
+export default async function prefixService() {
    
-  const response = await axios.get(
+  const response = await get(
     "https://api-prefixes.herokuapp.com/api/prefixes"
   );
   const result = response.data;

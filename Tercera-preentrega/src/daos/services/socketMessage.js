@@ -34,7 +34,6 @@ import msgModel from "../models/messageSchema";
       }
     });
 
-    /*Evento desconectar */
     socket.on("disconnect", () => {
       console.log(`User ${socket.id} offline`);
     });

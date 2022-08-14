@@ -7,7 +7,7 @@ export default class {
         }
     }
 
-    getProductsFromLocalStorage = (productsFromCart) => {
+    getProductsLocalStorage = (productsFromCart) => {
         if (!productsFromCart) {
             return "Products not found";
         } else {

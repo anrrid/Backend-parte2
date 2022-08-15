@@ -1,9 +1,9 @@
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
-const { createHash, isValidPassword } = require("./bcrypt/bcrypt");
-const userModel = require("../dao/models/userMongoose");
+import passport, { use, serializeUser, deserializeUser } from "passport";
+import { Strategy as LocalStrategy } from "passport-local";
+import { createHash, isValidPassword } from "./bcrypt/bcrypt";
+import { findOne, create, findById } from "../dao/models/userMongoose";
 
-passport.use(
+use(
   "local-login",
   new LocalStrategy(
     {
@@ -16,7 +16,7 @@ passport.use(
       console.log("run Passport Login");
       console.log(req.body);
       try {
-        const userFinded = await userModel.findOne({ email: req.body.email });
+        const userFinded = await findOne({ email: req.body.email });
 
         if (!userFinded) {
           console.log("User not found");
@@ -46,7 +46,7 @@ passport.use(
   )
 );
 
-passport.use(
+use(
   "signup-local",
   new LocalStrategy(
     {
@@ -73,7 +73,7 @@ passport.use(
 
       try {
         console.log("Ingresó a authPassportLocal => Sign Up");
-        const userFinded = await userModel.findOne({ email: req.body.email });
+        const userFinded = await findOne({ email: req.body.email });
 
         if (userFinded) {
           return done(
@@ -95,7 +95,7 @@ passport.use(
 
           console.log(userToCreate);
 
-          await userModel.create(userToCreate);
+          await create(userToCreate);
 
           return done(null, userToCreate);
         }
@@ -106,22 +106,22 @@ passport.use(
   )
 );
 
-passport.serializeUser(function (user, done) {
+serializeUser(function (user, done) {
   // done(null, user.email);
   done(null, user);
 });
 
-passport.deserializeUser(async function (id, done) {
+deserializeUser(async function (id, done) {
   // userModel.findById(id, function (err, user) {
   //   done(err, user);
   // });
 
   try {
-    const userFinded = userModel.findById(id);
+    const userFinded = findById(id);
     return done(null, userFinded);
   } catch (err) {
     console.log(err);
   }
 });
 
-module.exports = passport;
+export default passport;

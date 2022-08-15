@@ -47,7 +47,7 @@ export async function logOut(req, res, next) {
   const time = new Date().toLocaleTimeString();
   const mailOptions = {
     from: "Servidor de Node.js",
-    to: ["df2euol6wwi5u2ix@ethereal.email", req.session.passport.user.email],
+    to: ["donny67@ethereal.email", req.session.passport.user.email],
     subject: `user ${req.session.passport.user.email} disconnected on ${date} at ${time}`,
     html: `<h2>${req.session.passport.user.firstName} ${req.session.passport.user.lastName} user disconnected on ${date} at ${time}</h2>`,
     attachments: [

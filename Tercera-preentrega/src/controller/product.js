@@ -33,7 +33,7 @@ export async function getAll (req, res) {
     loggerTrace.trace("Run getAll");
     try {
         const products = await product.getAllProducts()
-        res.render("./pages/list", {products})
+        res.render("./pages/lista", {products})
     } catch (error) {
         loggerError.error(error);
         res.json(error)
@@ -123,13 +123,13 @@ export async function getByPrice (req, res, next) {
         loggerDefault.info(req.query);
 
         if (req.query.min == undefined || req.query.max == undefined) {
-            res.render("./pages/search")
+            res.render("./pages/search-products")
         } else {
             const min = parseInt(req.query.min);
             const max = parseInt(req.query.max);
             const getByPrice = await product.getProductByPrice( min, max);
 
-            res.render("./pages/getProducts", {getByPrice})
+            res.render("./pages/products-finded", {getByPrice})
         }
     } catch (error) {
         loggerError.error(error)

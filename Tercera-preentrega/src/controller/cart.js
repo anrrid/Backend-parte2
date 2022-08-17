@@ -9,7 +9,7 @@ import cartStorage from "../daos/services/cartStorage.js";
 const CartStorage = new cartStorage();
 
 import { mailingGmail } from "../daos/services/mailingContainer.js";
-import { createHtml as _createHtml } from "../utils/ticketHTML";
+import { createHtml as _createHtml } from "../utils/ticketHTML.js";
 
 import whatsAppTwilio from "../daos/services/whatsAppTwilio.js";
 

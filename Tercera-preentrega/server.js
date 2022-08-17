@@ -1,121 +1,145 @@
-/**
- * Required External Modules
- */
-import 'dotenv/config'
-import express from "express";
-import { Server as HttpServer } from "http";
-import { Server as IOServer } from "socket.io";
-import { messageDao, usersDao } from "./src/daos/index.js"
-import cookieParser from "cookie-parser";
+/*SERVER */
+import express, { Router} from "express";
+/*EXPRESS */
+const app = express();
+/*CONSTANTE */
+const http = require("http").Server(app);
+
+/*HTTP */
+const io = require("socket.io")(http);
+
+/*MODULO HANDLEBARS */
+import handlebars from "express-handlebars";
+
+/*CORS */
+import cors from "cors";
+app.use(cors());
+
+/*COMPRESSION*/
+import compression from "compression";
+app.use(compression());
+
+/*MULTER*/
+import multer, { diskStorage } from "multer";
+const storageMulter = diskStorage({
+  destination: "public/avatar",
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+app.use(
+  multer({
+    storage: storageMulter,
+    dest: "public/avatar",
+  }).single("avatar")
+);
+
+/*PASSPORT */
+import { initialize, session as _session } from "passport";
+/*SESSO*/
 import session from "express-session";
-import MongoStore from "connect-mongo";
-import config from "./src/utils/config.js";
-import passport from "passport";
-import { Strategy } from "passport-local";
-import router from "./auth.js"
-import cluster from 'cluster';
-import * as os from 'os';
-
-const clusterMode = process.argv[3] == 'CLUSTER';
-
-if (clusterMode && cluster.isPrimary) {
-    const CPUcores = os.cpus().length;
-    console.log(`Primary cluster setting up ${CPUcores} workers`);
-
-    for (let i = 0; i < CPUcores; i++) {
-        cluster.fork();
-    }
-
-    cluster.on('online', (worker) => {
-        console.log(`Worker ${worker.process.pid} is online`);
-    });
-
-    cluster.on('exit', (worker, code, signal) => {
-        console.log(`Worker ${worker.process.pid} died with code: ${code}, and signal: ${signal}`);
-        console.log('Starting a new worker');
-        cluster.fork();
-    });
-} else{
-    const app = express();
-    const PORT = parseInt(process.argv[2]) || 8080;
-    const httpServer = new HttpServer(app);
-    const io = new IOServer(httpServer);
-    const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true }; 
-
-    try {
-        
-        const LocalStrategy = Strategy;
-        passport.use(new LocalStrategy(
-            { usernameField: "email", passwordField: "password" },
-            (email, password, done) => {
-                usersDao.findById(email)
-                    .then(user => {
-                        if (!user) {
-                            return done(null, false, { message: "Incorrect email." });
-                        }
-                        if (user.password !== password) {
-                            return done(null, false, { message: "Incorrect password." });
-                        }
-                        return done(null, user);
-                    })
-                    .catch(err => done(err));
-            }
-        ));
-
-        passport.serializeUser(function (user, done) {
-            done(null, user);
-        });
-        
-        passport.deserializeUser(function (user, done) {
-            done(null, user);
-        });
-    } catch (error) {
-        console.log(error);
-    }
-
-    app.use(session({
-        store: MongoStore.create({ mongoUrl: config.mongodb.url, mongoOptions: advancedOptions }),
-        secret: process.env.SESSION_SECRET,
-        resave: true,
-        rolling: true,
-        saveUninitialized: false,
-        cookie: { maxAge: 60000 * 10 }
-    }));
-
-    /**
- *  App Configuration
- */
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+/*COOKIE-PARSER */
+import cookieParser from "cookie-parser";
+/*MONGO STORE */
+import { create } from "connect-mongo";
+/*MONGO ATLAS */
+const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+/*MONGO STORE */
+app.use(
+  session({
+    store: create({
+      mongoUrl:
+        "mongodb+srv://guillesapag:mercyful69@cluster0.eh9yf.mongodb.net/baseterror?retryWrites=true&w=majority",
+      mongoOptions: advancedOptions,
+      ttl: 600,
+    }),
+    secret: "Soy un gran secreto",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 180000,
+    },
+  })
+);
 app.use(cookieParser());
-app.set('view engine', 'ejs');
 
-app.use(passport.initialize());
-app.use(passport.session());
+/*Middleware Passport:  ANTES QUE LAS RUTAS */
+app.use(initialize());
+app.use(_session());
 
-io.on("connection", async (socket) => {
-    console.log("Usuario conectado con id: " + socket.id);
+/*Router */
+/*Se requieren las  rutas que va a ofrecer nuestra aplicación */
+import routesProducts from "./src/routes/routesProducts";
+const routerProducts = Router();
+import routesCart from "./src/routes/routesCart";
+const routerCart = Router();
+import routesMessagesChat from "./src/routes/routesMessagesChat";
+const routerMessagesChat = Router();
+import routesAuth from "./src/routes/routesAuth";
+const routerAuth = Router();
+import routesProcessInfo from "./src/routes/routesProcessInfo";
+const routerProcessInfo = Router();
+import routesRandom from "./src/routes/routesRandom";
+const routerRandom = Router();
 
-    socket.emit("messages", await messageDao.listarTabla());
-    console.log(await messageDao.listarTabla());
-    socket.on("new-message", async (message) => {
+/*Rutas a las view */
+import routesView from "./src/routes/routesView";
+const routerViews = Router();
 
-        await messageDao.insertarArticulo(message, "messages");
-        socket.emit("messages", await messageDao.listarTabla());
-    });
-});
+/*Rutas a las view via IO */
+import routesIoChat from "./src/routes/routesIOChat";
+const routerIoChat = Router();
 
-// Router mounting
-app.use("/", router);
+/*Body Parser: YA NO SE USA */
+import { json, urlencoded } from "body-parser";
+// /*Uso de Middlewares*/
+app.use(json());
+app.use(urlencoded());
+// app.use(express.json()); // Por algun motivo extraño el express.json() no me estaría funcionando
 
-const server = httpServer.listen(PORT, () => {
-    console.log(`Servidor activado en el Puerto ${PORT}`);
-});
+/*Configuración del motor de plantilla*/
+app.engine(
+  "hbs",
+  handlebars({
+    extname: "hbs", // Extension a utilizar
+    defaultLayout: "main.hbs", // El layout que va a cargar en todas las paginas por default
+    layoutsDir: `./views/layouts`, // Donde se van a encontrar las layouts
+    partialsDir: `./views/partials/`, // Donde se van a encontrar los partials
+  })
+);
+// Estableciendo el motor de plantilla que se utiliza
+app.set("view engine", "hbs");
+// Estableciendo el directorio donde se encuentran los archivos de plantillas
+app.set("views", "./views");
 
-server.on("error", (error) => {
-    console.log(error);
-});
+/*Sirve para ofrecer archivos staticos, ej:
+http://localhost:8080/static/css/style.css
+http://localhost:8080/static/js/index.js
+*/
+// Utilizamos el prefijo virtual '/static'
+app.use("/static", (__dirname + "/public"));
 
-}
+/*Rutas del API: Productos*/
+app.use(routesProducts(routerProducts));
+/*Rutas del API: Cart*/
+app.use(routesCart(routerCart));
+/*Rutas del API: Mensaje de chat*/
+app.use(routesMessagesChat(routerMessagesChat));
+/*Rutas del API: Ruta de session*/
+app.use(routesAuth(routerAuth));
+/*Rutas IO chat*/
+app.use(routesIoChat(routerIoChat));
+/*Rutas del views productos, agregar y chat*/
+app.use(routesView(routerViews));
+/*Rutas de ProcessInfo */
+app.use(routesProcessInfo(routerProcessInfo));
+/*Rutas de Random */
+app.use(routesRandom(routerRandom));
+
+/*Socket.io: Chat */
+/* Funcion socketIo que lo que contiene adentro es toda la conexión IO. */
+import socketConnection from "./src/services/messagesIOchat";
+socketConnection(io);
+
+/*Exportamos servidor */
+export default http;

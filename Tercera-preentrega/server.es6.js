@@ -1,5 +1,5 @@
 /*SERVER */
-import express, { Router} from "express";
+import express, { Router } from "express";
 /*EXPRESS */
 const app = express();
 /*CONSTANTE */
@@ -49,7 +49,7 @@ app.use(
   session({
     store: create({
       mongoUrl:
-        "mongodb+srv://guillesapag:mercyful69@cluster0.eh9yf.mongodb.net/baseterror?retryWrites=true&w=majority",
+        "mongodb+srv://coderhouse:coderhouse@cluster0.ijjaz.mongodb.net/dbuser?retryWrites=true&w=majority",
       mongoOptions: advancedOptions,
       ttl: 600,
     }),

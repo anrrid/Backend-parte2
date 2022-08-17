@@ -1,5 +1,5 @@
-const autocannon = require("autocannon");
-const { PassThrough } = require("stream");
+import autocannon, { track } from "autocannon";
+import { PassThrough } from "stream";
 
 const run = (url) => {
   const buf = [];
@@ -11,7 +11,7 @@ const run = (url) => {
     duration: 20,
   });
 
-  autocannon.track(inst, { outputStream });
+  track(inst, { outputStream });
 
   outputStream.on("data", (data) => buf.push(data));
   inst.on("done", () => {

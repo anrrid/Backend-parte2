@@ -1,13 +1,13 @@
 import productModel from '../models/productSchema.js'
 import Product from '../models/productScript.js'
 
-const Product = new Product();
+const ProductJs = new Product();
 
 export default class {
 
     async createProduct (product) {
         console.log(product, "run createProduct");
-        Product.createProduct(product);
+        ProductJs.createProduct(product);
         return await productModel.create(product)
     }
 

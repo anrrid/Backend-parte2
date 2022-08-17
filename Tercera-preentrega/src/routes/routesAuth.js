@@ -3,9 +3,6 @@
 /* Requiero controladores de ruta */
 import { signUpLocal, signUpLocalCallback, logIn, logInCallback, logOut } from "../controller/auth.js";
 
-/*Requiero el controlador de autenticación por si la persona quiere loguearse vía Facebook: Funcionalidad pausada, ahora es  vía PassportLocal */
-import { authenticate } from "../auth/authPassportFacebook";
-
 export default (router) => {
   router
     /*------------------------ */

@@ -1,7 +1,7 @@
 import passport, { use, serializeUser, deserializeUser } from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
-import { createHash, isValidPassword } from "./bcrypt/bcrypt";
-import { findOne, create, findById } from "../dao/models/userMongoose";
+import { createHash, isValidPassword } from "./bcrypt/bcrypt.js";
+import { findOne, create, findById } from "../daos/models/userSchema.js";
 
 use(
   "local-login",

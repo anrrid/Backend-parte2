@@ -1,5 +1,5 @@
 // const { fork } = require("child_process");
-const generateRandomNumber = require("../utils/randomNumber.js");
+import generateRandomNumber from "../utils/randomNumbers.js";
 
 const randomNumberController = (req, res, next) => {
   console.log("Ingresó a randomNumberProcess.js");
@@ -30,4 +30,4 @@ const randomNumberController = (req, res, next) => {
   res.json(result);
 };
 
-module.exports = randomNumberController;
+export default randomNumberController;

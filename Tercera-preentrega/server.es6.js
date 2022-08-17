@@ -69,25 +69,25 @@ app.use(_session());
 
 /*Router */
 /*Se requieren las  rutas que va a ofrecer nuestra aplicación */
-import routesProducts from "./src/routes/routesProducts";
+import routesProducts from "./src/routes/routesProducts.js";
 const routerProducts = Router();
-import routesCart from "./src/routes/routesCart";
+import routesCart from "./src/routes/routesCart.js";
 const routerCart = Router();
-import routesMessagesChat from "./src/routes/routesMessagesChat";
+import routesMessagesChat from "./src/routes/routesMessagesChat.js";
 const routerMessagesChat = Router();
-import routesAuth from "./src/routes/routesAuth";
+import routesAuth from "./src/routes/routesAuth.js";
 const routerAuth = Router();
-import routesProcessInfo from "./src/routes/routesProcessInfo";
+import routesProcessInfo from "./src/routes/routesProcessInfo.js";
 const routerProcessInfo = Router();
-import routesRandom from "./src/routes/routesRandom";
+import routesRandom from "./src/routes/routesRandom.js";
 const routerRandom = Router();
 
 /*Rutas a las view */
-import routesView from "./src/routes/routesView";
+import routesView from "./src/routes/routesView.js";
 const routerViews = Router();
 
 /*Rutas a las view via IO */
-import routesIoChat from "./src/routes/routesIOChat";
+import routesIoChat from "./src/routes/routesIOChat.js";
 const routerIoChat = Router();
 
 /*Body Parser: YA NO SE USA */
@@ -138,7 +138,7 @@ app.use(routesRandom(routerRandom));
 
 /*Socket.io: Chat */
 /* Funcion socketIo que lo que contiene adentro es toda la conexión IO. */
-import socketConnection from "./src/services/messagesIOchat";
+import socketConnection from "./src/daos/services/messageContainer.js";
 socketConnection(io);
 
 /*Exportamos servidor */

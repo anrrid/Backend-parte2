@@ -1,5 +1,5 @@
 // const { PORT } = require('./src/config/globals');
-import { initMongoDB } from "./src/daos/db/mongoConnection.js";
+import  initMongoDB  from "./src/daos/db/mongoConnection.js";
 import { listen } from "./server.es6.js";
 import { isMaster, fork, on } from "cluster";
 const numCPUs = require("os").cpus().length;

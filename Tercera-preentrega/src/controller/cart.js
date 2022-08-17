@@ -13,7 +13,7 @@ import { createHtml as _createHtml } from "../utils/ticketHTML.js";
 
 import whatsAppTwilio from "../daos/services/whatsAppTwilio.js";
 
-import smsTwilio from "../sms/twilio";
+import smsTwilio from "../sms/twilio.js";
 
 export async function postCartSession(req, res, next) {
   const response = CartStorage.addProductsToSession(req.body, req.session);

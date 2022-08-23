@@ -1,7 +1,5 @@
 import messageContainer from "../daos/services/messageContainer.js"
 import {normalize, schema} from "normalizr";
-import {loggerWarn, loggerTrace, loggerDefault, loggerError} from "../logger/log4js.js";
-
 const message = new messageContainer();
 
 export async function createMessage (req, res) {
@@ -9,12 +7,12 @@ export async function createMessage (req, res) {
         const createMessage = await message.createMessage(req.body);
         res.json({msg: "Message: ", message: createMessage});
     } catch (error) {
-        loggerError.error(error);
+    console.log(error);
+    res.json(error);
     }
 }
 
 export async function getAllMessages (req, res) {
-    loggerTrace.trace("run getAllMessages")
 
     try {
         const getAllMsgs = await message.getAllMessage();

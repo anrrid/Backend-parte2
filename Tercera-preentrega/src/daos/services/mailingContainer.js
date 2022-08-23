@@ -1,5 +1,6 @@
-import { transporterEthereal, transporterGmail } from "../../mailing/nodemailing.js";
-  
+import transporter from "../../mailing/nodemailing.js";
+const { transporterEthereal, transporterGmail } = transporter
+
   export function   mailingEthereal(mailOptions) {
     transporterEthereal.sendMail(mailOptions, (err, info) => {
       if (err) {

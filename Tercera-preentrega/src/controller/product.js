@@ -1,5 +1,6 @@
-import productContainer from "../daos/services/productContainer.js";
-import {loggerWarn, loggerTrace, loggerDefault, loggerError} from "../logger/log4js.js"
+import  productContainer from "../daos/services/productContainer.js";
+import pkg from "../logger/log4js.js"
+const {loggerWarn, loggerTrace, loggerDefault, loggerError} = pkg;
 
 const product =  new productContainer();
 

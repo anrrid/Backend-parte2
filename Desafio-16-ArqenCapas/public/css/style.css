@@ -1,0 +1,87 @@
+body {background-color:#ebebeb;
+}
+
+header{
+  background-color: #ffea4b;
+}
+    
+h1 {
+    color: rgb(85, 74, 102);
+    background-color: #ffea4b;
+    text-align: center;
+}
+
+h2 {
+    color: rgb(74, 64, 80);
+    text-align: center;
+    
+}
+
+h3 {
+    color: rgb(30, 42, 61);
+    text-align: center;
+}
+
+
+p {
+    color: rgb(15, 15, 15);
+    text-align: center;
+}
+label {
+    font-weight: bold;
+    font-style: italic;
+}
+
+
+#image {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1mm;
+  }
+
+  #image img{
+    border: solid;
+    border-color: #ffea4b;
+    margin: 0 auto;
+    height: 300px;
+    width: 450px;
+  }
+
+.user-chat {
+    color: blue;
+    font-weight: bold;
+}
+
+.date-chat {
+    color: brown;
+}
+
+.msg-chat {
+    color: green;
+    font-style: italic;
+    
+}
+
+#foto {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1mm;
+  }
+
+  #foto img{
+    margin: 0 auto;
+    size: 10 mm;
+  }
+
+  #ghost {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1mm;
+  }
+
+  #ghost img{
+    border: solid;
+    border-color: rgb(147, 204, 25);
+    margin: 0 auto;
+    size-adjust: 1cm;
+  }

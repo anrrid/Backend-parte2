@@ -1,7 +1,7 @@
 import passport, { use, serializeUser, deserializeUser } from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { createHash, isValidPassword } from "./bcrypt/bcrypt.js";
-import { findOne, create, findById } from "../daos/models/userSchema.js";
+import userModel from "../daos/models/userSchema.js";
 
 use(
   "local-login",
@@ -16,7 +16,7 @@ use(
       console.log("run Passport Login");
       console.log(req.body);
       try {
-        const userFinded = await findOne({ email: req.body.email });
+        const userFinded = await userModel.findOne({ email: req.body.email });
 
         if (!userFinded) {
           console.log("User not found");
@@ -73,7 +73,7 @@ use(
 
       try {
         console.log("Ingresó a authPassportLocal => Sign Up");
-        const userFinded = await findOne({ email: req.body.email });
+        const userFinded = await userModel.findOne({ email: req.body.email });
 
         if (userFinded) {
           return done(
@@ -117,7 +117,7 @@ deserializeUser(async function (id, done) {
   // });
 
   try {
-    const userFinded = findById(id);
+    const userFinded = userModel.findById(id);
     return done(null, userFinded);
   } catch (err) {
     console.log(err);

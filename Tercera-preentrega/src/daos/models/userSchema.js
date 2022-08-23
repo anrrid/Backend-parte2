@@ -1,5 +1,7 @@
-import { Schema, model } from 'mongoose';
-import {cartSquema} from './cartSchema.js'
+import pkg from 'mongoose';
+const { Schema, model } = pkg;
+
+import cartSquema from './cartSchema.js'
 
 const userCollection = 'users';
 

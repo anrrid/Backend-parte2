@@ -1,4 +1,4 @@
-exports.createHtml = (cart) => {
+export function createHtml(cart) {
     let emailBody = "";
   
     cart.productsOnCart.forEach((element) => {
@@ -10,5 +10,5 @@ exports.createHtml = (cart) => {
     });
   
     return emailBody;
-  };
+  }
   

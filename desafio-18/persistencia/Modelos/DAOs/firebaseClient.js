@@ -9,9 +9,8 @@ class FirebaseClient extends DBClient {
 
     static admin = admin.initializeApp({
         credential: admin.credential.cert(firebaseData),
-        databaseURL: "https://ecommerce-10e65-default-rtdb.firebaseio.com"
-    });
-
+        databaseURL: "https://basefirebase-b567c-firebase-adminsdk-hnuqn-d153643a45.com"
+      });
     async connect() {
         try {
             this.db = admin.firestore()

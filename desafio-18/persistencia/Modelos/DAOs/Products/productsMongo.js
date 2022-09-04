@@ -41,7 +41,8 @@ class ProductsMongoDAO extends ProductDAO {
     }
     async deleteById(id) {
         try {
-            await Producto.findByIdAndDelete(id)
+            const deleted = await Producto.findByIdAndDelete(id)
+            if(!deleted) throw new Error('Producto inexistente')
             return true
         }
         catch(err) {
@@ -60,6 +61,7 @@ class ProductsMongoDAO extends ProductDAO {
     async updateById(id, product) {
         try {
             const updatedProduct = await Producto.findByIdAndUpdate(id, product)
+            if(!updatedProduct) throw new Error('Producto inexistente')
             return new ProductDTO(updatedProduct._id, updatedProduct)
         }
         catch(err) {

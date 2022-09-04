@@ -92,7 +92,8 @@ class ProductFirebaseDAO extends ProductDAO {
             const doc = this.query.doc(`${id}`)
             const updated = await doc.update(product)
             if(!updated) throw new Error('Producto no encontrado')
-            return new ProductDTO(id, updated.data())
+            const edited = await doc.get()
+            return new ProductDTO(id, edited.data())
         } catch(err) {
             throw new Error(`Error al actualizar producto: ${err.message}`)
         }

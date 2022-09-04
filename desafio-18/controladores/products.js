@@ -8,6 +8,7 @@ export const returnTestProducts = async (req, res) => {
     } catch(err) {
         let logger = log4js.getLogger('errores')
         logger.error(err)
+        res.status(500).send({ error: err.message })
     }
 }
 
@@ -19,6 +20,7 @@ export const returnProducts = async (req, res) => {
     catch(err) {
         let logger = log4js.getLogger('errores')
         logger.error(err)
+        res.status(500).send({ error: err.message })
     }
 }
 export const createProduct = async (req, res) => {
@@ -29,6 +31,7 @@ export const createProduct = async (req, res) => {
     catch(err) {
         let logger = log4js.getLogger('errores')
         logger.error(err)
+        res.status(500).send({ error: err.message })
     }
 }
 export const editProduct = async (req, res) => {
@@ -39,6 +42,7 @@ export const editProduct = async (req, res) => {
     catch(err) {
         let logger = log4js.getLogger('errores')
         logger.error(err)
+        res.status(500).send({ error: err.message })
     }
 }
 export const deleteProduct = async (req, res) => {
@@ -49,5 +53,6 @@ export const deleteProduct = async (req, res) => {
     catch(err) {
         let logger = log4js.getLogger('errores')
         logger.error(err)
+        res.status(500).send({ error: err.message })
     }
 }

@@ -4,7 +4,7 @@ class BaseMemoriaDAO {
         return lg ? parseInt(lg[lg-1]._id) + 1 : 1
     }
     getIndex(_id, elements) {
-        return elements.findIndex(element => element ? element._id === _id : false)
+        return elements.findIndex(element => element ? (element._id === parseInt(_id)) : false)
     }
 }
 

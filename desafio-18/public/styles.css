@@ -1,31 +1,31 @@
-body {background-color:rgb(220, 250, 127);
+body {background-color:#f3efef;
 }
     
 h1 {
-    color: blue;
+    color: #551A8B;
     text-align: center;
 }
 
 h2 {
-    color: red;
+    color: rgb(58, 48, 71);
     text-align: center;
 }
 
 h3 {
-    color: rgb(30, 42, 61);
+    color: rgb(36, 39, 44);
     text-align: center;
 }
 
 section {
     margin-top: 1.5rem;
-    background-color: rgba(0,0,0,0.2);
+    background-color: #fff159;
     padding: 2rem;
 }
 #info :nth-child(odd) h3 {
-    color: goldenrod;
+    color: rgb(255, 246, 122);
 }
 #info :nth-child(even) h3 {
-    color: blueviolet;
+    color: rgb(241, 239, 98);
 }
 #info p, #info li {
     padding: .2rem 1rem 0rem 1rem;
@@ -33,7 +33,7 @@ section {
     font-weight: 700;
 }
 #message-section label{
-    color: red;
+    color: rgb(235, 211, 80);
     display:block;
     font-size: 1rem;
 }
@@ -54,14 +54,14 @@ section {
     font-size: 1.2rem;
 }
 .from {
-    color: blue;
+    color: rgb(13, 13, 13);
     font-weight: bold;
 }
 .name {
-    color: rgb(181, 99, 0);
+    color: rgb(45, 45, 56);
 }
 .content {
-    color: green;
+    color: rgb(59, 56, 56);
     font-style: italic;
 }
 .msg .thumbnail {
@@ -84,27 +84,6 @@ section {
     gap: 1rem;
 }
 
-#ghost {
-    display: flex;
-    flex-direction: column;
-    margin-top: 1mm;
-  }
 
-  #ghost img{
-    border: solid;
-    border-color: rgb(147, 204, 25);
-    margin: 0 auto;
-    size-adjust: 1cm;
-  }
 
-  #michael {
-    display: flex;
-    flex-direction: column;
-    margin-top: 1mm;
-  }
 
-  #michael img{
-    border: solid;
-    border-color: rgb(189, 18, 18);
-    margin: 0 auto;
-  }

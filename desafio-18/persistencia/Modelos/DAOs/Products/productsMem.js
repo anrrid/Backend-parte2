@@ -17,7 +17,7 @@ class ProductsMemDAO extends BaseMemoriaDAO {
         return new ProductDTO(result._id, result)
     }
     async add(product) {
-        let newId = this.getNext_id(this.products)
+        const newId = this.getNext_id(this.products)
         this.products = [...this.products, {...product, _id: newId}]
         const result = this.products[this.products.length - 1]
         return new ProductDTO(result._id, result)
@@ -35,7 +35,9 @@ class ProductsMemDAO extends BaseMemoriaDAO {
     async updateById(id, product) {
         let index = this.getIndex(id, this.products)
         if(index === -1) throw new Error(`No existe el producto con id ${id}`)
-        this.products[index] = {...product}
+        Object.entries(product).forEach(([key, value]) => {
+            this.products[index][key] = value
+        })
         const result = this.products[index]
         return new ProductDTO(result._id, result)
     }

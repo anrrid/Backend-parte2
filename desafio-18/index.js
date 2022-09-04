@@ -48,7 +48,7 @@ export const args = await yargs
     }).argv
 process.env.PERSISTENCIA = args.persistencia
 
-const app = express()
+export const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('./public'))
@@ -92,6 +92,11 @@ app.engine('hbs', engine({
 app.set('views', './views')
 app.set('view engine', 'hbs')
 
+import realizarPruebas from './tests/pruebasCliente.js' 
+app.get('/pruebas', async (req, res) => {
+    await realizarPruebas()
+    res.send('done')
+})
 app.use(authRoutes)
 app.use('/products_api', apiRoutes)
 app.use('/users', userRoutes)

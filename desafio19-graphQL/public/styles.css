@@ -1,0 +1,89 @@
+body {background-color:#f3efef;
+}
+    
+h1 {
+    color: #551A8B;
+    text-align: center;
+}
+
+h2 {
+    color: rgb(58, 48, 71);
+    text-align: center;
+}
+
+h3 {
+    color: rgb(36, 39, 44);
+    text-align: center;
+}
+
+section {
+    margin-top: 1.5rem;
+    background-color: #fff159;
+    padding: 2rem;
+}
+#info :nth-child(odd) h3 {
+    color: rgb(255, 246, 122);
+}
+#info :nth-child(even) h3 {
+    color: rgb(241, 239, 98);
+}
+#info p, #info li {
+    padding: .2rem 1rem 0rem 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+}
+#message-section label{
+    color: rgb(235, 211, 80);
+    display:block;
+    font-size: 1rem;
+}
+#message-section input {
+    width: 40%;
+    min-width: 10rem;
+    padding: .2rem;
+}
+#message-board {
+    height: 15rem;
+    overflow-y: scroll;
+    padding: 1rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+.msg {
+    width: 100%;
+    font-size: 1.2rem;
+}
+.from {
+    color: rgb(13, 13, 13);
+    font-weight: bold;
+}
+.name {
+    color: rgb(45, 45, 56);
+}
+.content {
+    color: rgb(59, 56, 56);
+    font-style: italic;
+}
+.msg .thumbnail {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+#login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+}
+#login-form div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+
+
+

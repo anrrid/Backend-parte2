@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> head }}
+<body>
+    <div class="container">
+        <section id="despedida">
+            <h2>Hasta luego, {{username}}</h2>
+            <h2>Muchas gracias por visitarnos</h2>
+        <div id="ghost">
+        <img src="https://files.tecnoblog.net/wp-content/uploads/2022/03/ghostface.jpg">
+        </div>
+        <h2>Te esperamos en breve</h2>
+        </section>
+        <script >
+            setTimeout(() => {
+                window.location.href = '/auth/login'
+            }, 2000)
+        </script>
+    </div>
+</body>
+</html>

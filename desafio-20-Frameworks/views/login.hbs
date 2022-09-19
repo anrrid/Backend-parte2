@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> head }}
+<body>
+    <div class="container">
+        <section>
+            <h1>Mi Tienda</h1>
+            <h2>Productos para la familia</h2>
+            <form action="/auth/login" method="POST">
+                <input type="email" name="email" id="email" placeholder="email" required />
+                <input type="password" name="password" id="password" placeholder="password" required />
+                <input type="submit" value="Login" />
+            </form>
+            <h3>
+                ¿No estas Registrado? <a href="/auth/register">Registrate</a>
+            </h3>
+        </section>
+    </div>
+</body>
+</html>

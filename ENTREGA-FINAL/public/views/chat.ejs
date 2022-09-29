@@ -22,12 +22,14 @@
 		<% } %>
 	<div class="usuario-container">
 		<a href="/">
-			<button>Volver</button>
+			<button class="nav-bar-line">Volver</button>
 		</a>
 	</div>
+	<img id="img-chat" src="../img/contacto-desktop_1.webp" alt="contacto">
 	<div class="outer-container">
-		<h1 class="titulo">Centro de Mensajes </h1>
+		
 		<h2 class="titulo">Preguntanos lo que quieras! </h2>
+		
 		<form class="mensajes-form">
 			<label for="email">Email</label>
 			<input <% if(user) { %> value="<%= user.email %>" <% } %> type="email"
@@ -44,7 +46,7 @@
 			<input <% if(user) { %> value="<%= user.avatar %>" <% } %> type="text" name="avatar" required />
 			<label for="mensaje">Mensaje</label>
 			<input type="text" name="mensaje" required />
-			<button type="submit">Enviar</button>	
+			<button class="black-button" type="submit">Enviar</button>	
 		</form>
 		<div class="mensajes"></div>
 	</div>

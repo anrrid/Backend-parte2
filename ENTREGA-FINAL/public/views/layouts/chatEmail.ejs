@@ -11,19 +11,21 @@
 	<div class="outer-container">
 		<div class="mensajes">
       <div class="mensajes-container">
-        <h2 class="subtitulo" style="margin-top: 0;">Mensajes</h2>
+
+        <h2 class="subtitulo" style="margin-top: 0;">Escribi una pregunta. Busca lo que queres saber!</h2>
+
         <% if(mensajes.length) { %>
             <% mensajes.forEach(mensaje=> { %>
               <div class="mensaje">
-                <p>
-                  <span class="mensaje-email"><%= mensaje.author.id %></span>
-                </p>
-                <p>[<span class="mensaje-hora"><%= new Date(Date.parse(mensaje.text.hora)).toLocaleString() %></span>]:</p>
-                <p>
-                  <span class="mensaje-mensaje"><%= mensaje.text.text %></span>
-                </p>
                 <div class="img-container">
                   <img src="<%= mensaje.author.avatar %>" alt="Not Found" />
+                </div>
+                <div>
+                  <p><%= mensaje.author.id %> :</p>
+                </div>
+                <div>
+                  <p><%= mensaje.text.text %></p>
+                  <p><%= new Date(Date.parse(mensaje.text.hora)).toLocaleString() %></p>
                 </div>
               </div>
             <% }); %>

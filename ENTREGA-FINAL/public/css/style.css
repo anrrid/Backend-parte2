@@ -71,19 +71,17 @@ label {
   margin: 0 auto;
 }
 
-.user-chat {
-  color: blue;
-  font-weight: bold;
+#img-chat{
+  flex-direction: column;
+  width: 800px;
+  padding: auto;
+  margin-bottom: 15px;
 }
 
-.date-chat {
-  color: brown;
-}
 
-.msg-chat {
-  color: green;
-  font-style: italic;
-  
+.black-button{
+  background-color: black;
+  color: white;
 }
 
 #foto {
@@ -148,7 +146,7 @@ input {
 .nav-bar-line::after{
   content: "";
   display: block;
-  height: 1.5px;
+  height: 1.8px;
   background-color: black;
   transform: scale(0,1);
   transform-origin: left;
@@ -191,8 +189,10 @@ button {
 }
 
 .titulo {
-  margin-bottom: 2rem;
-}
+  margin-bottom: 2rem 2rem;
+  padding: 1rem;
+  color: black;
+} 
 
 .btn {
   display: inline-block;

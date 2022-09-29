@@ -15,23 +15,11 @@
   margin: 0 0.3rem;
 }
 
-.mensaje-email {
-  color: blue;
-}
-
-.mensaje-hora {
-  color: brown;
-}
-
-.mensaje-mensaje {
-  margin-right: 0.6rem;
-  font-style: italic;
-  color: green;
-}
 
 .img-container {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
+  margin: 10px;
 }
 
 .img-container img {

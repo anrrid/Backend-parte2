@@ -1,10 +1,10 @@
 <h1 align="center">Proyecto Final</h1>
-<h2 align="center">⭐️VHS "Video Club Virtual"⭐️</h2>
+<h2 align="center">Mi Tienda</h2>
 <p>El proyecto de un Video Club virtual, en el cual el usuario puede seleccionar películas de terror clásicas para los nostaligos. El usuario se registra, inicia su sesión y puede observar la Tienda de Películas. Asimismo, cuenta con una sección de Chat, para realizar consultas.
 Finalmente cuenta con la posibilidad de incorporar nuevos títulos que ingresan.
 </p>
 
-## 🌐 [Ver Proyecto en Heroku](https://guillesapag.herokuapp.com/login)
+## 🌐 [Ver Proyecto en Heroku]
 
 ## 🤝Instalar dependencias
 npm install
@@ -19,8 +19,8 @@ nodemailer/nodemon/passport/passport-local/pino/socket.io/twilio
 npm run start
 
 ## Visualización proyecto
-A fin de visualizar el proyecto VHS, registrarse o ingresar con usuario de prueba, previamente registrado:
-Correo: cristian2022@hotmail.com   password: boquita, a fin de acceder a la pantalla inicial.
+A fin de visualizar el proyecto, registrarse o ingresar con usuario de prueba, previamente registrado:
+email: prueba@prueba.com password: 123
 
 
 ## Routes

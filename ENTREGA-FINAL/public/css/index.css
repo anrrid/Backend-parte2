@@ -8,7 +8,7 @@ h1 {
 }
 
 h2 {
-  color: red;
+  color: black;
   text-align: center;
 }
 
@@ -63,7 +63,9 @@ h2 {
 
 .login {
   background-color: var(--green400);
+  margin-top: 30px;
 }
+
 
 .login-img {
   width: 90px;
@@ -117,11 +119,6 @@ h2 {
 
 .btns-carrito {
   margin-top: 1rem;
-}
-
-.btn-cerrar,
-.btn-comprar {
-  margin-top: 0;
 }
 
 .btn-cerrar {

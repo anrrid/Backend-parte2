@@ -1,12 +1,11 @@
 <h1 align="center">Proyecto Final</h1>
 <h2 align="center">Mi Tienda</h2>
-<p>El proyecto de un Video Club virtual, en el cual el usuario puede seleccionar películas de terror clásicas para los nostaligos. El usuario se registra, inicia su sesión y puede observar la Tienda de Películas. Asimismo, cuenta con una sección de Chat, para realizar consultas.
-Finalmente cuenta con la posibilidad de incorporar nuevos títulos que ingresan.
+<p>En el proyecto "Mi Tienda" el usuario podra comprar. Primero debera registrarse para poder agregar productos al carrito. Tambien cuenta con centro de mensajes donde se podra dejar consultas.
 </p>
 
 ## 🌐 [Ver Proyecto en Heroku]
 
-## 🤝Instalar dependencias
+## Instalar dependencias
 npm install
 
 ## Dependencias utilizadas
@@ -15,7 +14,7 @@ connect-mongo/dotenv/ejs/express/express-session/minimist/mongoose
 nodemailer/nodemon/passport/passport-local/pino/socket.io/twilio
 
 
-## ✨Iniciar el servidor
+## Iniciar el servidor
 npm run start
 
 ## Visualización proyecto
@@ -63,8 +62,5 @@ te redirecciona a la página principal ya logueado.
 - `GET /api/randoms?cant` Se le puede pasar un número a través de la ruta y este retorna un JSON con números al azar entre 1 y 1000, y la cantidad de veces
 que tocaron. Si no se pasa un valor para cant este es 1000 por defecto.
 
-## 🏠 [Homepage](https://github.com/Guillesap)
+## 🏠 [Homepage]
 
-## 📝 License
-
-Copyright © 2022 👤[Guillermo Sapag](https://vhsvideoclub.netlify.app/).

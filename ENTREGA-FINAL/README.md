@@ -3,7 +3,7 @@
 <p>En el proyecto "Mi Tienda" el usuario podra comprar. Primero debera registrarse para poder agregar productos al carrito. Tambien cuenta con centro de mensajes donde se podra dejar consultas.
 </p>
 
-## 🌐 [Ver Proyecto en Heroku]
+## 🌐 [Ver Proyecto en Heroku] => https://mitienda-rodriguez.herokuapp.com/
 
 ## Instalar dependencias
 npm install
@@ -18,7 +18,7 @@ nodemailer/nodemon/passport/passport-local/pino/socket.io/twilio
 npm run start
 
 ## Visualización proyecto
-A fin de visualizar el proyecto, registrarse o ingresar con usuario de prueba, previamente registrado:
+A fin de visualizar el proyecto, registrarse o ingresar con usuario de prueba, previamente registrado =>
 email: prueba@prueba.com password: 123
 
 
@@ -61,6 +61,3 @@ te redirecciona a la página principal ya logueado.
 - `GET /info` Retorna un JSON con información acerca del servidor.
 - `GET /api/randoms?cant` Se le puede pasar un número a través de la ruta y este retorna un JSON con números al azar entre 1 y 1000, y la cantidad de veces
 que tocaron. Si no se pasa un valor para cant este es 1000 por defecto.
-
-## 🏠 [Homepage]
-
